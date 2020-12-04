@@ -1,9 +1,9 @@
 import numpy as np
 
 
-def generate_sphere_coordinates(radius=1.0, samples=25):
+def generate_sphere_samples(radius=1.0, samples=25):
     """
-    Generate spherical coordinates using a grid of angle values, the convention used is:
+    Generate sphere samples using spherical coordinates with a grid of angles, the convention used is:
     r in (0, infinity)
     theta in (0, pi), rotating from the polar axis (z) (polar angle)
     phi in (0, 2pi), rotates around the z axis

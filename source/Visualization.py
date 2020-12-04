@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 import numpy as np
 import matplotlib.colors
-from Math import generate_sphere_coordinates
+from Math import generate_sphere_samples
 from matplotlib.colors import LinearSegmentedColormap
 
 _BACKGROUND_COLOR = 'xkcd:grey'
@@ -88,7 +88,7 @@ def create_3d_plot_with_color_map(x, y, z, w, title: str,  dest_filename=None, d
 
 
 def test():
-    x, y, z = generate_sphere_coordinates(samples=25)
+    x, y, z = generate_sphere_samples(samples=25)
     g_x, g_y = np.gradient(z)
     g = (g_x ** 2 + g_y ** 2) ** .5
     w = g/g.max()

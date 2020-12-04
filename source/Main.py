@@ -1,10 +1,10 @@
 from Visualization import create_3d_plot_with_color_map
-from Math import generate_sphere_coordinates
+from Math import generate_sphere_samples
 from SphericalHarmonics import get_sh_basis_value_cartesian
 
 
 def main():
-    x, y, z = generate_sphere_coordinates(1.0, 100)
+    x, y, z = generate_sphere_samples(1.0, 100)
     for order in [0, 1]:
         for degree in range(-order, order + 1):
             basis_value = get_sh_basis_value_cartesian(x, y, z, order, degree, normalize=False)
