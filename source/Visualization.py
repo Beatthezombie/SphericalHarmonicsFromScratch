@@ -9,20 +9,11 @@ _BACKGROUND_COLOR = 'xkcd:grey'
 _COLOR_MAP_NAME = 'blue_red'
 _INVISIBLE_COLOR = (1.0, 1.0, 1.0, 0.0)
 
+blue_red_color_map = {'red':   ((0.0, 0.0, 0.0), (0.5, 0.0, 0.1), (1.0, 1.0, 1.0)),
+                      'green': ((0.0, 0.0, 0.0), (1.0, 0.0, 0.0)),
+                      'blue':  ((0.0, 0.0, 1.0), (0.5, 0.1, 0.0), (1.0, 0.0, 0.0))}
 
-brcmap = {'red':   ((0.0, 0.0, 0.0),
-                   (0.5, 0.0, 0.1),
-                   (1.0, 1.0, 1.0)),
-
-         'green': ((0.0, 0.0, 0.0),
-                   (1.0, 0.0, 0.0)),
-
-         'blue':  ((0.0, 0.0, 1.0),
-                   (0.5, 0.1, 0.0),
-                   (1.0, 0.0, 0.0))
-        }
-
-plt.register_cmap(cmap=LinearSegmentedColormap('blue_red', brcmap))
+plt.register_cmap(cmap=LinearSegmentedColormap('blue_red', blue_red_color_map))
 
 
 def _fig_create_color_bar(fig, color_values, color_map_name=_COLOR_MAP_NAME):

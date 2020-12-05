@@ -3,6 +3,7 @@ import numpy as np
 _ONE_OVER_PI = 1.0 / np.pi
 _ONE_OVER_SQRT_PI = 1.0 / np.sqrt(np.pi)
 _SQRT_3 = np.sqrt(3)
+_SQRT_5 = np.sqrt(5)
 
 
 def normalization_coefficient(order, degree):
@@ -34,6 +35,18 @@ def get_sh_basis_value_cartesian(x, y, z, order, degree, normalize=False):
             result = z * coefficient
         else:
             result = x * coefficient
+    elif order == 2:
+        coefficient = 0.5 * _SQRT_5 * _ONE_OVER_SQRT_PI
+        if degree == -2:
+            result = coefficient * _SQRT_3 * x * y
+        elif degree == -1:
+            result = coefficient * _SQRT_3 * y * z
+        elif degree == 0:
+            result = 0.5 * coefficient * (3 * (z * z) - 1)
+        elif degree == 1:
+            result = coefficient * _SQRT_3 * z * x
+        else:
+            result = 0.5 * coefficient * _SQRT_3 * (x * x - y * y)
     else:
         result = np.full_like(x, 0)
 
