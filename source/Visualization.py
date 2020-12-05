@@ -59,14 +59,15 @@ def create_3d_plot_with_color_map(x, y, z, w, title: str,  dest_filename=None, d
         ax.set_zticks([])
     else:
         plt.title(title)
-        ax.set_xlim3d(-1, 1)
-        ax.set_ylim3d(-1, 1)
-        ax.set_zlim3d(-1, 1)
+
         ax.set_xlabel('X axis', fontsize='large', labelpad=10)
         ax.set_ylabel('Y axis', fontsize='large', labelpad=10)
         ax.set_zlabel('Z axis', fontsize='large', labelpad=10)
         _fig_create_color_bar(fig, w, _COLOR_MAP_NAME)
 
+    ax.set_xlim3d(-1, 1)
+    ax.set_ylim3d(-1, 1)
+    ax.set_zlim3d(-1, 1)
     ax.set_box_aspect((1, 1, 1))
 
     if dest_filename is not None:

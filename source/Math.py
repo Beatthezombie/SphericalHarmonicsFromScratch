@@ -1,6 +1,19 @@
 import numpy as np
 
 
+def generate_sphere_samples_spherical_coordinates(samples=25):
+    phi, theta = np.mgrid[0:2 * np.pi:complex(0, samples * 2), 0:np.pi:complex(0, samples)]
+    return phi, theta
+
+
+def spherical_to_cartesian(phi, theta, radius):
+    phi, theta = np.asarray(phi), np.asarray(theta)
+    x = radius * np.sin(theta) * np.cos(phi)
+    y = radius * np.sin(theta) * np.sin(phi)
+    z = radius * np.cos(theta)
+    return x, y, z
+
+
 def generate_sphere_samples(radius=1.0, samples=25):
     """
     Generate sphere samples using spherical coordinates with a grid of angles, the convention used is:
@@ -11,12 +24,9 @@ def generate_sphere_samples(radius=1.0, samples=25):
     :param samples: number of samples to use for each angle, creates a grid of sample * (2 * samples)
     :return: x,y,z arrays
     """
-    assert(radius > 0)
+    assert(radius > 0 and samples > 0)
 
     # complex numbers make np.mgrid generate a list of interpolated values
-    phi, theta = np.mgrid[0:2 * np.pi:complex(0, samples * 2), 0:np.pi:complex(0, samples)]
-    x = radius * np.sin(theta) * np.cos(phi)
-    y = radius * np.sin(theta) * np.sin(phi)
-    z = radius * np.cos(theta)
-
+    phi, theta = generate_sphere_samples_spherical_coordinates(samples)
+    x, y, z = spherical_to_cartesian(phi, theta, radius)
     return x, y, z
