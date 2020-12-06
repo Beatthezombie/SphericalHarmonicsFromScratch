@@ -38,7 +38,7 @@ def _ax_create_3d_surface_cartesian(ax, x, y, z, w=None, color_map_name=None):
 
 
 def create_3d_plot_with_color_map(x, y, z, w, title: str,  dest_filename=None, display=False, hide_text=False):
-    fig = plt.figure(figsize=(8, 8))
+    fig = plt.figure(figsize=(8, 8), dpi=100)
     ax = fig.gca(projection='3d')
 
     fig.patch.set_facecolor(_BACKGROUND_COLOR)
@@ -70,13 +70,14 @@ def create_3d_plot_with_color_map(x, y, z, w, title: str,  dest_filename=None, d
     ax.set_zlim3d(-1, 1)
     ax.set_box_aspect((1, 1, 1))
 
+    plt.tight_layout()
     if dest_filename is not None:
         plt.savefig(dest_filename)
 
     if display:
         plt.show()
 
-    ax.cla()
+    plt.close(fig)
 
 
 def test():
