@@ -10,15 +10,10 @@ _SQRT_7 = np.sqrt(7)
 _SQRT_15 = np.sqrt(15)
 
 
-def normalization_coefficient(order, degree):
-    assert (order >= 0 and -order <= degree <= order)
-    return np.power(-1.0, degree) * np.math.factorial(order - degree) / np.math.factorial(order + degree)
-
-
 def get_sh_basis_value_radius_in_cartesian(phi, theta, order, degree):
     phi, theta = np.asarray(phi), np.asarray(theta)
     x, y, z = spherical_to_cartesian(phi, theta, 1.0)
-    r = get_sh_basis_value_cartesian(x, y, z, order, degree, normalize=False)
+    r = get_sh_basis_value_cartesian(x, y, z, order, degree)
     color = r > 0
     color = color.astype(np.float)
     color = 2.0 * color - 1.0
@@ -27,14 +22,13 @@ def get_sh_basis_value_radius_in_cartesian(phi, theta, order, degree):
     return x, y, z, color
 
 
-def get_sh_basis_value_cartesian(x, y, z, order, degree, normalize=False):
+def get_sh_basis_value_cartesian(x, y, z, order, degree):
     """
     :param x: x coordinate
     :param y: y coordinate
     :param z: z coordinate
     :param order: also named l
     :param degree:  also named m
-    :param normalize: use normalized basis function
     :return: sh basis function value
     """
     x, y, z = np.asarray(x), np.asarray(y), np.asarray(z)
@@ -85,8 +79,5 @@ def get_sh_basis_value_cartesian(x, y, z, order, degree, normalize=False):
 
     else:
         result = np.full_like(x, 0)
-
-    if normalize:
-        result *= normalization_coefficient(order, degree)
 
     return result

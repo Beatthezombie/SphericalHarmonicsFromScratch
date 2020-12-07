@@ -10,7 +10,7 @@ def generate_sphere_visualization():
     x, y, z = generate_sphere_samples(1.0, _SAMPLE_COUNT)
     for order in _ORDER:
         for degree in range(-order, order + 1):
-            basis_value = get_sh_basis_value_cartesian(x, y, z, order, degree, normalize=False)
+            basis_value = get_sh_basis_value_cartesian(x, y, z, order, degree)
             figure_name = f'SH basis order {order} degree {degree}'
             file_name = f'..//figures//sh_{order}_{degree}'
             create_3d_plot_with_color_map(x, y, z, basis_value, figure_name,
